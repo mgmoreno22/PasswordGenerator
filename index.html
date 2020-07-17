@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Password Generator</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="./Assets/style.css">
+    <!-- Javascript for Generator -->
+    <script>
+        // Declared variables 
+        var specialChar = false;
+        var lower = false;
+        var upper = false;
+        var numbers = false;
+        var pLength = 0;
+
+        //Declaring arrays
+        var genPassArray = [];
+        var NumArray = ["0","1","2","3","4","5","6","7","8","9"];
+        var lowerArray = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
+        var upperArray = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
+        var specialCharArray = ["!","@","#","$","%","^","&","*","(",")","\"","\'","?"];
+
+        function reset() {
+            // Declared variables 
+            specialChar = false;
+            lower = false;
+            upper = false;
+            numbers = false;
+            pLength = 0;
+
+            //Declaring arrays
+            genPassArray = [];
+            NumArray = ["0","1","2","3","4","5","6","7","8","9"];
+            lowerArray = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
+            upperArray = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
+            specialCharArray = ["!","@","#","$","%","^","&","*","(",")","\"","\'","?"];
+        }
+
+        function generate() {
+            //Make sure all values are default if reusing button
+            reset();
+
+            //check for valid number response
+            do {
+                pLength = prompt("How many characters would you like to use?");
+                console.log(pLength);
+
+                if (pLength > 0 && pLength <= 50) {
+                    //continue with prompts
+                    console.log("Valid number found")
+                } 
+                else if (pLength > 50) {
+                    alert("Please choose a smaller number");
+                    pLength = 0;
+                }
+                else {
+                    alert("Not a good number");
+                    pLength = 0;
+                    console.log(pLength);
+                }
+            } while (pLength <= 0);
+
+            //Confirm what characters user wants
+            lower = confirm("Do you want to use lowercase letters?");
+            upper = confirm("Do you want to use Uppercase letters?");
+            numbers = confirm("Do you want to use numbers?")
+            specialChar = confirm("Do you want to use special characters?");
+
+            // Log user data for password
+            console.log("------------------------")
+            console.log("Password Length: " + pLength);
+            console.log("Lowercase: " + lower);
+            console.log("Uppercase: " + upper);
+            console.log("Numbers: " + numbers);
+            console.log("Special Characters: " + specialChar);
+            console.log("------------------------")
+
+            if (lower) {
+                genPassArray = genPassArray.concat(lowerArray);
+            }
+            if (upper) {
+                genPassArray = genPassArray.concat(upperArray);
+            }
+            if (numbers) {
+                genPassArray = genPassArray.concat(NumArray);
+            }
+            if (specialChar) {
+                genPassArray = genPassArray.concat(specialCharArray);
+            }
+             console.log(genPassArray)
+        }
+
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <h1 class="title">Generate a Password</h1>
+            <hr>
+        </div>
+        <div class="row">
+            <p>Generator Goes here</p>
+            <button class="genBttn" onclick="generate()">Generate</button>
+        </div>
+    </div>
+</body>
+</html>
