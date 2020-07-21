@@ -61,10 +61,10 @@ function generatePassword() {
         }
         else if (pLength > 0 && pLength <= 50) {
             //prompt for other password data
-            lower = confirm("Do you want to use lowercase letters?");
+            lower = confirm("Do you want to use Lowercase letters?");
             upper = confirm("Do you want to use Uppercase letters?");
-            numbers = confirm("Do you want to use numbers?")
-            specialChar = confirm("Do you want to use special characters?");
+            numbers = confirm("Do you want to use Numbers?")
+            specialChar = confirm("Do you want to use Special Characters?");
 
         } 
         else if (pLength > 50) {
