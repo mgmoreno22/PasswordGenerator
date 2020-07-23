@@ -38,10 +38,6 @@ function reset() {
 
     //Reset arrays
     genPassArray = [];
-    numArray = ["0","1","2","3","4","5","6","7","8","9"];
-    lowerArray = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
-    upperArray = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
-    specialCharArray = ["!","@","#","$","%","^","&","*","(",")","\"","\'","?","."];
 }
 
 // ---------- End of Variable information ---------------
@@ -59,7 +55,7 @@ function generatePassword() {
             password = "Password Cancelled"
             return password; //break out of function early
         }
-        else if (pLength > 0 && pLength <= 50) {
+        else if (pLength >= 8 && pLength <= 128) {
             //prompt for other password data
             lower = confirm("Do you want to use Lowercase letters?");
             upper = confirm("Do you want to use Uppercase letters?");
@@ -67,16 +63,20 @@ function generatePassword() {
             specialChar = confirm("Do you want to use Special Characters?");
 
         } 
-        else if (pLength > 50) {
+        else if (pLength > 128) {
             alert("Please choose a smaller number");
             pLength = 0;
         }
+        else if (pLength < 8) {
+            alert("Please choose a larger number");
+            pLength = 0;
+        }
         else {
-            alert("Please use a valid integer (i.e. '7' not 'seven')");
+            alert("Please use a valid integer (i.e. '8' not 'eight')");
             pLength = 0;
             console.log(pLength);
         }
-    } while (pLength <= 0);
+    } while (pLength <= 7);
 
     // Log user data for password
     console.log("Password Length: " + pLength);
